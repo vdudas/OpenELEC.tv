@@ -1,0 +1,9 @@
+[Unit]
+Description=Eventlirc daemon
+After=udev-settle.service
+
+[Service]
+ExecStart=/usr/sbin/eventlircd -f --evmap=/etc/eventlircd.d --socket=/run/lirc/lircd --release=_UP
+
+[Install]
+WantedBy=multi-user.target
