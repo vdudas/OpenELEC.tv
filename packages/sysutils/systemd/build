@@ -35,8 +35,17 @@ cd $PKG_BUILD
             --disable-static \
             --enable-shared \
             --disable-selinux \
+            --disable-tcpwrap \
             --disable-pam \
+            --disable-acl \
+            --disable-audit \
+            --disable-libcryptsetup \
+            --disable-binfmt \
+            --disable-hostnamed \
+            --disable-timedated \
+            --disable-localed \
             --disable-gtk \
+            --disable-plymouth \
             --with-distro=other \
             --with-sysvinit-path="" \
             --with-sysvrcd-path="" \

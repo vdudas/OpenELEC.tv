@@ -48,7 +48,6 @@ mkdir -p $INSTALL/etc
 # mkdir -p $INSTALL/etc/bash_completion.d
 #   cp $PKG_BUILD/src/systemctl-bash-ompletion.sh $INSTALL/etc/bash_completion.d
 #
-# mkdir -p $INSTALL/etc/binfmt.d
 # mkdir -p $INSTALL/etc/modules-load.d
 # mkdir -p $INSTALL/etc/sysctl.d
 # mkdir -p $INSTALL/etc/tmpfiles.d
@@ -80,14 +79,11 @@ mkdir -p $INSTALL/etc/xdg/systemd
 
 mkdir -p $INSTALL/lib/systemd
   cp $PKG_BUILD/systemd-ac-power $INSTALL/lib/systemd
-  cp $PKG_BUILD/systemd-binfmt $INSTALL/lib/systemd
   cp $PKG_BUILD/systemd-cgroups-agent $INSTALL/lib/systemd
   cp $PKG_BUILD/systemd-detect-virt $INSTALL/lib/systemd
   cp $PKG_BUILD/systemd-fsck $INSTALL/lib/systemd
-  cp $PKG_BUILD/.libs/systemd-hostnamed $INSTALL/lib/systemd
   cp $PKG_BUILD/.libs/systemd-initctl $INSTALL/lib/systemd
   cp $PKG_BUILD/.libs/systemd-kmsg-syslogd $INSTALL/lib/systemd
-  cp $PKG_BUILD/.libs/systemd-localed $INSTALL/lib/systemd
   cp $PKG_BUILD/.libs/systemd-logind $INSTALL/lib/systemd
   cp $PKG_BUILD/systemd-modules-load $INSTALL/lib/systemd
   cp $PKG_BUILD/systemd-quotacheck $INSTALL/lib/systemd
@@ -100,7 +96,6 @@ mkdir -p $INSTALL/lib/systemd
   cp $PKG_BUILD/.libs/systemd-shutdownd $INSTALL/lib/systemd
   cp $PKG_BUILD/.libs/systemd-stdout-syslog-bridge $INSTALL/lib/systemd
   cp $PKG_BUILD/systemd-sysctl $INSTALL/lib/systemd
-  cp $PKG_BUILD/.libs/systemd-timedated $INSTALL/lib/systemd
   cp $PKG_BUILD/systemd-timestamp $INSTALL/lib/systemd
   cp $PKG_BUILD/.libs/systemd-uaccess $INSTALL/lib/systemd
   cp $PKG_BUILD/systemd-update-utmp $INSTALL/lib/systemd
@@ -138,8 +133,6 @@ mkdir -p $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/poweroff.service $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/poweroff.target $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/printer.target $INSTALL/lib/systemd/system
-  cp $PKG_BUILD/units/proc-sys-fs-binfmt_misc.automount $INSTALL/lib/systemd/system
-  cp $PKG_BUILD/units/proc-sys-fs-binfmt_misc.mount $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/quotacheck.service $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/quotaon.service $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/reboot.service $INSTALL/lib/systemd/system
@@ -168,12 +161,9 @@ mkdir -p $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-ask-password-console.service $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-ask-password-wall.path $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-ask-password-wall.service $INSTALL/lib/systemd/system
-  cp $PKG_BUILD/units/systemd-binfmt.service $INSTALL/lib/systemd/system
-  cp $PKG_BUILD/units/systemd-hostnamed.service $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-initctl.service $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-initctl.socket $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-kmsg-syslogd.service $INSTALL/lib/systemd/system
-  cp $PKG_BUILD/units/systemd-localed.service $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-logind.service $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-modules-load.service $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-random-seed-load.service $INSTALL/lib/systemd/system
@@ -188,7 +178,6 @@ mkdir -p $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-stdout-syslog-bridge.service $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-stdout-syslog-bridge.socket $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-sysctl.service $INSTALL/lib/systemd/system
-  cp $PKG_BUILD/units/systemd-timedated.service $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-tmpfiles-clean.service $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-tmpfiles-clean.timer $INSTALL/lib/systemd/system
   cp $PKG_BUILD/units/systemd-tmpfiles-setup.service $INSTALL/lib/systemd/system
@@ -203,10 +192,7 @@ mkdir -p $INSTALL/lib/systemd/system
 
 #  ln -sf getty@.service $INSTALL/lib/systemd/system/autovt@.service
   ln -sf reboot.target $INSTALL/lib/systemd/system/ctrl-alt-del.target
-  ln -sf systemd-hostnamed.service $INSTALL/lib/systemd/system/dbus-org.freedesktop.hostname1.service
-  ln -sf systemd-localed.service $INSTALL/lib/systemd/system/dbus-org.freedesktop.locale1.service
   ln -sf systemd-logind.service $INSTALL/lib/systemd/system/dbus-org.freedesktop.login1.service
-  ln -sf systemd-timedated.service $INSTALL/lib/systemd/system/dbus-org.freedesktop.timedate1.service
 #  ln -sf poweroff.target $INSTALL/lib/systemd/system/runlevel0.target
 #  ln -sf rescue.target $INSTALL/lib/systemd/system/runlevel1.target
 #  ln -sf multi-user.target $INSTALL/lib/systemd/system/runlevel2.target
@@ -247,13 +233,11 @@ mkdir -p $INSTALL/lib/systemd/system
   enable_service cryptsetup.target sysinit.target
   enable_service dev-hugepages.mount sysinit.target
   enable_service dev-mqueue.mount sysinit.target
-  enable_service proc-sys-fs-binfmt_misc.automount sysinit.target
   enable_service sys-fs-fuse-connections.mount sysinit.target
   enable_service sys-kernel-config.mount sysinit.target
   enable_service sys-kernel-debug.mount sysinit.target
   enable_service sys-kernel-security.mount sysinit.target
   enable_service systemd-ask-password-console.path sysinit.target
-  enable_service systemd-binfmt.service sysinit.target
   enable_service systemd-kmsg-syslogd.service sysinit.target
   enable_service systemd-modules-load.service sysinit.target
   enable_service systemd-random-seed-load.service sysinit.target
@@ -282,7 +266,6 @@ mkdir -p $INSTALL/usr/lib
   cp -P $PKG_BUILD/.libs/libsystemd-daemon.so* $INSTALL/usr/lib
   cp -P $PKG_BUILD/.libs/libsystemd-login.so* $INSTALL/usr/lib
 
-mkdir -p $INSTALL/usr/lib/binfmt.d
 mkdir -p $INSTALL/usr/lib/modules-load.d
 mkdir -p $INSTALL/usr/lib/sysctl.d
 mkdir -p $INSTALL/usr/lib/tmpfiles.d
