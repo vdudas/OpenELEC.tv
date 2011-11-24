@@ -49,8 +49,6 @@ mkdir -p .build-target && cd .build-target
              --enable-inotify \
              --with-xml=expat \
              --with-systemdsystemunitdir=/lib/systemd/system \
-             --with-system-pid-file=/run/messagebus.pid \
-             --with-system-socket=/run/dbus/system_bus_socket \
              --without-x \
              --with-dbus-user=dbus \
 
