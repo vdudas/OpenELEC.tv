@@ -33,6 +33,7 @@ cd $PKG_BUILD
             --localstatedir=/var \
             --disable-static \
             --enable-shared \
+            --with-pid-file=/run/ConsoleKit/pid \
             --disable-pam-module \
             --disable-docbook-docs \
 
