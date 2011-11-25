@@ -35,6 +35,5 @@ __language__   = __settings__.getLocalizedString
 __cwd__        = __settings__.getAddonInfo('path')
 
 if __name__ == "__main__":
-	if __settings__.openSettings():
-		path = xbmc.translatePath( os.path.join( __cwd__, 'scripts', "refresh-settings") )
-		os.system(path)
+	path = xbmc.translatePath( os.path.join( __cwd__, 'scripts', "start-services") )
+	os.system(path)

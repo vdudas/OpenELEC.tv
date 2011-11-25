@@ -8,8 +8,6 @@
 	<string id="2012">Språklayout #2</string>
 	<string id="2020">Systemoppdateringer</string>
 	<string id="2021">Systemoppdateringer</string>
-	<string id="2050">LCD/VFD</string>
-	<string id="2051">LCD Driver</string>
 
 	<!-- Nettverk -->
 	<string id="2100">Nettverk</string>
@@ -18,23 +16,24 @@
 	<string id="2111">Vertsnavn</string>
 	<string id="2120">Nettverkskort</string>
 	<string id="2121">Overføringsteknologi</string>
-	<string id="2122">Nettverksgrensesnitt</string>
+	<string id="2122">Autoconnect</string>
 	<string id="2130">IP instillinger</string>
 	<string id="2131">Statisk IP adresse</string>
-	<string id="2132">Nettverksprefix lengde</string>
+	<string id="2132">Network netmask</string>
 	<string id="2133">Standard gateway</string>
 	<string id="2134">Foretrukket DNS-server</string>
 	<string id="2135">Alternativ DNS-server</string>
 	<string id="2136">Alternativ DNS-server</string>
 	<string id="2150">WLAN instillinger</string>
 	<string id="2151">WLAN SSID</string>
-	<string id="2152">Skjult Nettverk</string>
-	<string id="2153">WLAN Sikkerhet</string>
 	<string id="2154">WLAN Passord</string>
 
-	<!-- SAMBA -->
-	<string id="5000">Samba</string>
+	<!-- SERVICES -->
+	<string id="5000">Services</string>
 	<string id="5010">Oppstart</string>
-	<string id="5011">Start Samba under oppstart</string>
+	<string id="5011">Start Samba Server under oppstart</string>
+	<string id="5012">Start SSH Server under oppstart</string>
+	<string id="5021">Start LCD/VFD under oppstart</string>
+	<string id="5022">LCD Driver</string>
 
 </strings>
