@@ -1,0 +1,12 @@
+[Unit]
+Description=Installer
+Conflicts=automount.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/installer
+StandardInput=tty-force
+StandardOutput=inherit
+
+[Install]
+WantedBy=installer.target
