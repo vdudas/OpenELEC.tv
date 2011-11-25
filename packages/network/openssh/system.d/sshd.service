@@ -1,0 +1,8 @@
+[Unit]
+Description=OpenSSH server daemon.
+After=syslog.target network.target sshd-keygen.service
+
+[Service]
+ExecStart=/usr/sbin/sshd -D
+ExecReload=/bin/kill -HUP $MAINPID
+StandardError=syslog

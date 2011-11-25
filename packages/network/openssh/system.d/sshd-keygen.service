@@ -1,0 +1,12 @@
+[Unit]
+Description=SSH Key Generation
+After=local-fs.target run-cache.mount
+
+[Service]
+ExecStart=/usr/bin/ssh-keygen -A
+Type=oneshot
+RemainAfterExit=yes
+StandardOutput=tty
+
+[Install]
+WantedBy=network.target
