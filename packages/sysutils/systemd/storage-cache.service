@@ -1,0 +1,10 @@
+[Unit]
+Description=Generating Cache directory
+
+[Service]
+Type=oneshot
+ExecStart=/bin/mkdir -p /storage/.cache
+RemainAfterExit=yes
+
+[Install]
+WantedBy=local-fs.target
