@@ -1,0 +1,12 @@
+[Unit]
+Description=Temp Directory
+Before=local-fs.target
+
+[Mount]
+What=tmpfs
+Where=/tmp
+Type=tmpfs
+Options=mode=755,nosuid,nodev,noexec
+
+[Install]
+WantedBy=local-fs.target
