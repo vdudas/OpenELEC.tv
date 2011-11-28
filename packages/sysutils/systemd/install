@@ -246,10 +246,7 @@ mkdir -p $INSTALL/lib/systemd/system
 #  enable_service systemd-vconsole-setup.service sysinit.target
 
 # set default target
-#  ln -sf graphical.target $INSTALL/lib/systemd/system/default.target
-  if [ -n $MEDIACENTER ]; then
-    ln -sf $MEDIACENTER.target $INSTALL/lib/systemd/system/default.target
-  fi
+  ln -sf graphical.target $INSTALL/lib/systemd/system/default.target
 
 mkdir -p $INSTALL/lib/systemd/system-generators
   cp $PKG_BUILD/systemd-getty-generator $INSTALL/lib/systemd/system-generators
