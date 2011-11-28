@@ -1,0 +1,14 @@
+[Unit]
+Description=XBMC Media Center
+After=xorg-server.service displaymanager.service graphical.target
+
+[Service]
+Environment=DISPLAY=:0.0
+Environment=SDL_MOUSE_RELATIVE=0
+Environment=HOME=/storage
+Environment=LIRCDEV=/run/lirc/lircd
+ExecStart=/usr/lib/xbmc/xbmc.bin --standalone -fs --lircdev $LIRCDEV
+Restart=always
+
+[Install]
+WantedBy=graphical.target

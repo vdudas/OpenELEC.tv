@@ -1,7 +1,8 @@
+#!/bin/sh
+
 ################################################################################
-#      This file is part of OpenELEC - http://www.openelec.tv
-#      Copyright (C) 2009-2011 Stephan Raue (stephan@openelec.tv)
-#      Copyright (C) 2010-2011 Roman Weber (roman@openelec.tv)
+#      Copyright (C) 2009-2010 OpenELEC.tv
+#      http://www.openelec.tv
 #
 #  This Program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -18,18 +19,15 @@
 #  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
-# Mediacenter environment variables.
-#
-# This file contains non-OpenELEC evironment variables as well as OpenELEC
-# evironment variables that are not user defined.
-################################################################################
 
-XBMC_HOME="/usr/share/xbmc"
+# hack to support user installed fonts
 
-# hack: add addons to $PATH
-  for i in `find /storage/.xbmc/addons/* -name bin -type d`; do
-    PATH="$PATH:$i"
-  done
+SUBFONTS="/storage/.xbmc/userdata/fonts"
 
-export XBMC_HOME
-export PATH
+if [ -d "$SUBFONTS" ]; then
+  files=$(ls $SUBFONTS/*.[tT][tT][fF] 2>/dev/null | wc -l)
+  if [ "$files" = "0" ]; then
+    cp /usr/share/xbmc/media/Fonts/*.[tT][tT][fF] $SUBFONTS/
+  fi
+    mount --bind $SUBFONTS /usr/share/xbmc/media/Fonts/
+fi
