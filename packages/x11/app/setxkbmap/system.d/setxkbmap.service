@@ -1,0 +1,11 @@
+[Unit]
+Description=Setup Keymap
+Requires=graphical.target
+After=graphical.target xorg-server.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/systemd/scripts/setxkbmap
+
+[Install]
+WantedBy=graphical.target
