@@ -7,4 +7,4 @@ BusName=org.freedesktop.UPower
 ExecStart=/usr/lib/upower/upowerd
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=graphical.target
