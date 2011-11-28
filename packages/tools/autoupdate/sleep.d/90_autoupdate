@@ -24,7 +24,10 @@
 
 case "$1" in
   thaw|resume)
-    autoupdate &
+    (
+      usleep 30000000
+      autoupdate
+    )&
     ;;
   *) exit $NA
     ;;

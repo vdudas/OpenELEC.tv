@@ -21,11 +21,12 @@
 ################################################################################
 
 TMP_DIR="$HOME/.xbmc/temp"
+MACHINEID=`cat /etc/machine-id`
 
 if [ -f /etc/update.conf ]; then
   . /etc/update.conf
-elif [ -f /var/config/settings.conf ]; then
-  . /var/config/settings.conf
+elif [ -f /run/config/settings.conf ]; then
+  . /run/config/settings.conf
   AUTOUPDATE="$UPDATE_AUTO"
 else
   exit 0
@@ -44,7 +45,7 @@ download () {
   case "$DL_METHOD" in
     wget)
       wget -U "$THIS_DISTRIBUTION ($THIS_ARCH): $THIS_VERSION" \
-           -c ${1}?sysid=$SYSTEMID \
+           -c ${1}?sysid=$MACHINEID \
            -O $2 > /dev/null 2>&1
       ;;
     scp)
@@ -60,9 +61,6 @@ send_message () {
 if [ ! -f /var/lock/update.lock ]; then
 
   if [ "$AUTOUPDATE" = "manually" -o "$AUTOUPDATE" = "manual" -o "$AUTOUPDATE" = "auto" ]; then
-
-  # sleep a bit, maybe we have a lot of work ;-)
-    usleep 30000000
 
   # getting this version
     THIS_DISTRIBUTION="`cat /etc/distribution`"

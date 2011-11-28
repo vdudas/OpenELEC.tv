@@ -1,0 +1,12 @@
+[Unit]
+Description=Start Autoupdate service
+DefaultDependencies=no
+Conflicts=shutdown.target
+After=default.target
+Before=shutdown.target
+
+[Timer]
+OnActiveSec=30s
+
+[Install]
+WantedBy=default.target
