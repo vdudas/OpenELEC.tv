@@ -29,6 +29,7 @@ mkdir -p $INSTALL/usr/sbin
   cp $PKG_BUILD/server/LCDd $INSTALL/usr/sbin
 
 mkdir -p $INSTALL/usr/lib/lcdproc
+  cp $PKG_DIR/scripts/LCDd $INSTALL/usr/lib/lcdproc
   cp $PKG_BUILD/server/drivers/*.so $INSTALL/usr/lib/lcdproc
 
 mkdir -p $INSTALL/etc

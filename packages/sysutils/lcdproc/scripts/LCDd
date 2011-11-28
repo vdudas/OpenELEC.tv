@@ -1,3 +1,5 @@
+#!/bin/sh
+
 ################################################################################
 #      Copyright (C) 2009-2010 OpenELEC.tv
 #      http://www.openelec.tv
@@ -18,32 +20,21 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-# start the LCD daemon
-#
-# runlevels: openelec, textmode
+OPENELEC_ADDON_HOME="/storage/.xbmc/userdata/addon_data/os.openelec.settings"
+OPENELEC_ADDON_SETTINGS="$OPENELEC_ADDON_HOME/settings.xml"
 
-(
-  if [ -f /var/config/settings.conf ]; then
-    . /var/config/settings.conf
-
-    if [ ! "$LCD_DRIVER" = none ]; then
-
-      progress "Starting LCD daemon with driver: $LCD_DRIVER"
-
-      if [ -f /storage/.config/LCDd.conf ]; then
-        LCD_CONFIG="/storage/.config/LCDd.conf"
-      else
-        LCD_CONFIG="/etc/LCDd.conf"
-      fi
-
-      # sleep 10sec. to for irserver loading
-        if [ "$LCD_DRIVER" = "irtrans" ]; then
-          usleep 7000000
-        fi
-
-    # sleep another 3sec. to for irserver loading
-      usleep 3000000
-      LCDd -c $LCD_CONFIG -d $LCD_DRIVER -s true > /dev/null 2>&1
-    fi
+# parse settings file and export as variables
+  if [ -f $OPENELEC_ADDON_SETTINGS ] ; then
+    while read var; do
+      export `echo $var | awk -F\" '{print $2"="$4""}' | sed '/^=/d'`
+    done < $OPENELEC_ADDON_SETTINGS
   fi
-)&
+
+# start LCDd
+  if [ -f /storage/.config/LCDd.conf ]; then
+    LCD_CONFIG="/storage/.config/LCDd.conf"
+  else
+    LCD_CONFIG="/etc/LCDd.conf"
+  fi
+
+  LCDd -c $LCD_CONFIG -d $LCD_DRIVER -s true -f
