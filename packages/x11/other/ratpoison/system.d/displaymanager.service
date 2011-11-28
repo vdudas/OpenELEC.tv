@@ -1,0 +1,11 @@
+[Unit]
+Description=Ratpoison Windowmanager
+After=xorg-server.service
+
+[Service]
+Environment=DISPLAY=:0.0 HOME=/storage
+ExecStart=/usr/bin/ratpoison
+Restart=always
+
+[Install]
+WantedBy=graphical.target
