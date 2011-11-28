@@ -2,7 +2,6 @@
 Description=Automount internal partitions
 Wants=udev.service
 After=udev-kernel.socket udev-control.socket udisks.service
-Before=graphical.target
 DefaultDependencies=no
 
 [Service]
@@ -11,4 +10,4 @@ RemainAfterExit=yes
 ExecStart=/usr/bin/udevadm trigger --subsystem-match=block --action=add
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=local-fs.target

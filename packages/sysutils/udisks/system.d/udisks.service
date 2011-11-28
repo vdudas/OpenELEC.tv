@@ -7,4 +7,4 @@ BusName=org.freedesktop.UDisks
 ExecStart=/usr/lib/udisks/udisks-daemon
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=graphical.target
