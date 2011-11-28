@@ -1,5 +1,5 @@
 [Unit]
 Description=Installer Mode
 Wants=multi-user.target
-Conflicts=rescue.service rescue.target graphical.target
+Conflicts=rescue.service rescue.target xorg-server.service graphical.target
 AllowIsolate=yes
