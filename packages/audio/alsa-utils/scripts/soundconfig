@@ -33,6 +33,8 @@ mixer() {
 
 progress "Setting up sound card"
 
+touch /tmp/sound.conf
+
 if [ -f $HOME/.config/sound.conf ]; then
 
   alsactl restore -f $HOME/.config/sound.conf

@@ -1,0 +1,13 @@
+[Unit]
+Description=Setup Audio Mixer Settings
+DefaultDependencies=no
+After=sound.target
+Before=graphical.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/systemd/scripts/soundconfig
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sound.target
