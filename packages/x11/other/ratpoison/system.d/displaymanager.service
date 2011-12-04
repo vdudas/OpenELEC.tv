@@ -1,5 +1,6 @@
 [Unit]
 Description=Ratpoison Windowmanager
+Requires=graphical.target
 After=xorg-server.service
 
 [Service]
