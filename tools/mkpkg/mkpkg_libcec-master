@@ -1,3 +1,4 @@
+#!/bin/sh
 ################################################################################
 #      This file is part of OpenELEC - http://www.openelec.tv
 #      Copyright (C) 2009-2011 Stephan Raue (stephan@openelec.tv)
@@ -18,19 +19,25 @@
 #  http://www.gnu.org/copyleft/gpl.html
 ################################################################################
 
-PKG_NAME="libcec"
-PKG_VERSION="8b86fb7"
-PKG_REV="1"
-PKG_ARCH="any"
-PKG_LICENSE="GPL"
-PKG_SITE="http://libcec.pulse-eight.com/"
-PKG_URL="$DISTRO_SRC/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS="udev"
-PKG_BUILD_DEPENDS="toolchain udev"
-PKG_PRIORITY="optional"
-PKG_SECTION="system"
-PKG_SHORTDESC="libCEC is an open-source dual licensed library designed for communicating with the Pulse-Eight USB - CEC Adaptor"
-PKG_LONGDESC="libCEC is an open-source dual licensed library designed for communicating with the Pulse-Eight USB - CEC Adaptor."
-PKG_IS_ADDON="no"
+echo "getting sources..."
+  if [ ! -d libcec-master.git ]; then
+    git clone git://github.com/Pulse-Eight/libcec.git -b master libcec-master.git
+  fi
 
-PKG_AUTORECONF="yes"
+  cd libcec-master.git
+    git pull
+    GIT_REV=`git log -n1 --format=%h`
+  cd ..
+
+echo "copying sources..."
+  rm -rf libcec-$GIT_REV
+  cp -R libcec-master.git libcec-$GIT_REV
+
+echo "cleaning sources..."
+  rm -rf libcec-$GIT_REV/.git
+
+echo "packing sources..."
+  tar cvJf libcec-$GIT_REV.tar.xz libcec-$GIT_REV
+
+echo "remove temporary sourcedir..."
+  rm -rf libcec-$GIT_REV
