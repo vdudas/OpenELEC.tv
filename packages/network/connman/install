@@ -39,6 +39,9 @@ mkdir -p $INSTALL/usr/bin
   cp -P $PKG_BUILD/src/connmand $INSTALL/usr/bin
   cp $PKG_DIR/scripts/cmcc $INSTALL/usr/bin
 
+mkdir -p $INSTALL/usr/lib/connman
+  cp -P $PKG_BUILD/test/* $INSTALL/usr/lib/connman
+
 mkdir -p $INSTALL/usr/config
   cp $PKG_DIR/config/hosts.conf $INSTALL/usr/config
 

@@ -30,12 +30,26 @@ OPENELEC_ADDON_SETTINGS="$OPENELEC_ADDON_HOME/settings.xml"
     done < $OPENELEC_ADDON_SETTINGS
   fi
 
+# enable networks
+  if [ "$NET_NETWORK" = "LAN" -o "$NET2_NETWORK" = "LAN" ]; then
+    cmcc enable ethernet
+  else
+    cmcc disable ethernet
+  fi
+
+  if [ "$NET_NETWORK" = "WLAN" -o "$NET2_NETWORK" = "WLAN" ]; then
+    cmcc enable wifi
+  else
+    cmcc disable wifi
+  fi
+
 # Network 1
   if [ "$NET_NETWORK" = "WLAN" -a -n "$NET_SSID" ]; then
     CONNMAN_SERVICE="$NET_SSID"
     cmcc connect-hidden $NET_SSID $NET_PASSPHRASE
   else
     CONNMAN_SERVICE=Wired
+    cmcc enable ethernet
   fi
 
   if [ -n "$NET_AUTOCONNECT" ]; then
@@ -59,8 +73,10 @@ OPENELEC_ADDON_SETTINGS="$OPENELEC_ADDON_HOME/settings.xml"
     if [ "$NET2_NETWORK" = "WLAN" -a -n "$NET2_SSID" ]; then
       CONNMAN2_SERVICE="$NET2_SSID"
       cmcc connect-hidden $NET2_SSID $NET2_PASSPHRASE
+      cmcc enable wifi
     else
       CONNMAN2_SERVICE=Wired
+      cmcc enable ethernet
     fi
 
     if [ -n "$NET2_AUTOCONNECT" ]; then
