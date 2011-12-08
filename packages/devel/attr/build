@@ -24,10 +24,6 @@
 . config/options $1
 
 cd $PKG_BUILD
-
-do_autoreconf -I m4
-
-MAKE="$ROOT/$TOOLCHAIN/bin/make" \
 ./configure --host=$TARGET_NAME \
             --build=$HOST_NAME \
             --prefix=/usr \
@@ -37,7 +33,6 @@ MAKE="$ROOT/$TOOLCHAIN/bin/make" \
             --enable-shared \
             --disable-static \
 
-make -C include
-make -C libattr
+make
 
 cp -P libattr/.libs/*.so* $SYSROOT_PREFIX/usr/lib/
