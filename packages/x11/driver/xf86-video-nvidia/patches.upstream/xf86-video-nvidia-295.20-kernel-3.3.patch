@@ -1,0 +1,15 @@
+diff -Naur NVIDIA-Linux-x86_64-295.20-no-compat32/kernel/conftest.sh NVIDIA-Linux-x86_64-295.20-no-compat32.patch/kernel/conftest.sh
+--- NVIDIA-Linux-x86_64-295.20-no-compat32/kernel/conftest.sh	2012-02-07 06:07:35.000000000 +0100
++++ NVIDIA-Linux-x86_64-295.20-no-compat32.patch/kernel/conftest.sh	2012-02-19 18:28:45.243503527 +0100
+@@ -126,9 +126,9 @@
+     CFLAGS="$BASE_CFLAGS $MACH_CFLAGS $OUTPUT_CFLAGS -I$HEADERS $AUTOCONF_CFLAGS"
+ 
+     if [ "$ARCH" = "i386" -o "$ARCH" = "x86_64" ]; then
+-        CFLAGS="$CFLAGS -I$SOURCES/arch/x86/include"
++        CFLAGS="$CFLAGS -I$SOURCES/arch/x86/include -I$SOURCES/arch/x86/include/generated"
+     elif [ "$ARCH" = "ARMv7" ]; then
+-        CFLAGS="$CFLAGS -I$SOURCES/arch/arm/include"
++        CFLAGS="$CFLAGS -I$SOURCES/arch/arm/include -I$SOURCES/arch/arm/include/generated"
+     fi
+     if [ -n "$BUILD_PARAMS" ]; then
+         CFLAGS="$CFLAGS -D$BUILD_PARAMS"
