@@ -1,0 +1,298 @@
+diff -Naur linux-3.3-rc4/arch/alpha/include/asm/types.h linux-3.3-rc4.patch/arch/alpha/include/asm/types.h
+--- linux-3.3-rc4/arch/alpha/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/alpha/include/asm/types.h	2012-02-20 10:22:38.793785990 +0100
+@@ -15,4 +15,9 @@
+ #include <asm-generic/int-l64.h>
+ #endif
+ 
++#ifndef __ASSEMBLY__
++
++typedef unsigned int umode_t;
++
++#endif /* __ASSEMBLY__ */
+ #endif /* _ALPHA_TYPES_H */
+diff -Naur linux-3.3-rc4/arch/arm/include/asm/types.h linux-3.3-rc4.patch/arch/arm/include/asm/types.h
+--- linux-3.3-rc4/arch/arm/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/arm/include/asm/types.h	2012-02-20 10:22:38.793785990 +0100
+@@ -3,6 +3,12 @@
+ 
+ #include <asm-generic/int-ll64.h>
+ 
++#ifndef __ASSEMBLY__
++
++typedef unsigned short umode_t;
++
++#endif /* __ASSEMBLY__ */
++
+ /*
+  * These aren't exported outside the kernel to avoid name space clashes
+  */
+diff -Naur linux-3.3-rc4/arch/avr32/include/asm/types.h linux-3.3-rc4.patch/arch/avr32/include/asm/types.h
+--- linux-3.3-rc4/arch/avr32/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/avr32/include/asm/types.h	2012-02-20 10:22:38.833786718 +0100
+@@ -10,6 +10,12 @@
+ 
+ #include <asm-generic/int-ll64.h>
+ 
++#ifndef __ASSEMBLY__
++
++typedef unsigned short umode_t;
++
++#endif /* __ASSEMBLY__ */
++
+ /*
+  * These aren't exported outside the kernel to avoid name space clashes
+  */
+diff -Naur linux-3.3-rc4/arch/cris/include/asm/types.h linux-3.3-rc4.patch/arch/cris/include/asm/types.h
+--- linux-3.3-rc4/arch/cris/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/cris/include/asm/types.h	2012-02-20 10:22:38.834786736 +0100
+@@ -3,6 +3,12 @@
+ 
+ #include <asm-generic/int-ll64.h>
+ 
++#ifndef __ASSEMBLY__
++
++typedef unsigned short umode_t;
++
++#endif /* __ASSEMBLY__ */
++
+ /*
+  * These aren't exported outside the kernel to avoid name space clashes
+  */
+diff -Naur linux-3.3-rc4/arch/frv/include/asm/types.h linux-3.3-rc4.patch/arch/frv/include/asm/types.h
+--- linux-3.3-rc4/arch/frv/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/frv/include/asm/types.h	2012-02-20 10:22:38.835786755 +0100
+@@ -14,6 +14,12 @@
+ 
+ #include <asm-generic/int-ll64.h>
+ 
++#ifndef __ASSEMBLY__
++
++typedef unsigned short umode_t;
++
++#endif /* __ASSEMBLY__ */
++
+ /*
+  * These aren't exported outside the kernel to avoid name space clashes
+  */
+diff -Naur linux-3.3-rc4/arch/h8300/include/asm/types.h linux-3.3-rc4.patch/arch/h8300/include/asm/types.h
+--- linux-3.3-rc4/arch/h8300/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/h8300/include/asm/types.h	2012-02-20 10:22:38.836786774 +0100
+@@ -3,10 +3,27 @@
+ 
+ #include <asm-generic/int-ll64.h>
+ 
++#if !defined(__ASSEMBLY__)
++
++/*
++ * This file is never included by application software unless
++ * explicitly requested (e.g., via linux/types.h) in which case the
++ * application is Linux specific so (user-) name space pollution is
++ * not a major issue.  However, for interoperability, libraries still
++ * need to be careful to avoid a name clashes.
++ */
++
++typedef unsigned short umode_t;
++
++/*
++ * These aren't exported outside the kernel to avoid name space clashes
++ */
+ #ifdef __KERNEL__
+ 
+ #define BITS_PER_LONG 32
+ 
+ #endif /* __KERNEL__ */
+ 
++#endif /* __ASSEMBLY__ */
++
+ #endif /* _H8300_TYPES_H */
+diff -Naur linux-3.3-rc4/arch/ia64/include/asm/types.h linux-3.3-rc4.patch/arch/ia64/include/asm/types.h
+--- linux-3.3-rc4/arch/ia64/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/ia64/include/asm/types.h	2012-02-20 10:22:38.837786793 +0100
+@@ -28,6 +28,8 @@
+ # define __IA64_UL(x)		((unsigned long)(x))
+ # define __IA64_UL_CONST(x)	x##UL
+ 
++typedef unsigned int umode_t;
++
+ /*
+  * These aren't exported outside the kernel to avoid name space clashes
+  */
+diff -Naur linux-3.3-rc4/arch/m32r/include/asm/types.h linux-3.3-rc4.patch/arch/m32r/include/asm/types.h
+--- linux-3.3-rc4/arch/m32r/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/m32r/include/asm/types.h	2012-02-20 10:22:38.838786811 +0100
+@@ -3,6 +3,12 @@
+ 
+ #include <asm-generic/int-ll64.h>
+ 
++#ifndef __ASSEMBLY__
++
++typedef unsigned short umode_t;
++
++#endif /* __ASSEMBLY__ */
++
+ /*
+  * These aren't exported outside the kernel to avoid name space clashes
+  */
+diff -Naur linux-3.3-rc4/arch/m68k/include/asm/types.h linux-3.3-rc4.patch/arch/m68k/include/asm/types.h
+--- linux-3.3-rc4/arch/m68k/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/m68k/include/asm/types.h	2012-02-20 10:22:38.839786829 +0100
+@@ -10,6 +10,12 @@
+  */
+ #include <asm-generic/int-ll64.h>
+ 
++#ifndef __ASSEMBLY__
++
++typedef unsigned short umode_t;
++
++#endif /* __ASSEMBLY__ */
++
+ /*
+  * These aren't exported outside the kernel to avoid name space clashes
+  */
+diff -Naur linux-3.3-rc4/arch/mips/include/asm/types.h linux-3.3-rc4.patch/arch/mips/include/asm/types.h
+--- linux-3.3-rc4/arch/mips/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/mips/include/asm/types.h	2012-02-20 10:22:38.840786847 +0100
+@@ -25,6 +25,12 @@
+ # endif
+ #endif
+ 
++#ifndef __ASSEMBLY__
++
++typedef unsigned short umode_t;
++
++#endif /* __ASSEMBLY__ */
++
+ /*
+  * These aren't exported outside the kernel to avoid name space clashes
+  */
+diff -Naur linux-3.3-rc4/arch/mn10300/include/asm/types.h linux-3.3-rc4.patch/arch/mn10300/include/asm/types.h
+--- linux-3.3-rc4/arch/mn10300/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/mn10300/include/asm/types.h	2012-02-20 10:22:38.840786847 +0100
+@@ -13,6 +13,12 @@
+ 
+ #include <asm-generic/int-ll64.h>
+ 
++#ifndef __ASSEMBLY__
++
++typedef unsigned short umode_t;
++
++#endif /* __ASSEMBLY__ */
++
+ /*
+  * These aren't exported outside the kernel to avoid name space clashes
+  */
+diff -Naur linux-3.3-rc4/arch/parisc/include/asm/types.h linux-3.3-rc4.patch/arch/parisc/include/asm/types.h
+--- linux-3.3-rc4/arch/parisc/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/parisc/include/asm/types.h	2012-02-20 10:22:38.841786865 +0100
+@@ -3,4 +3,10 @@
+ 
+ #include <asm-generic/int-ll64.h>
+ 
++#ifndef __ASSEMBLY__
++
++typedef unsigned short umode_t;
++
++#endif /* __ASSEMBLY__ */
++
+ #endif
+diff -Naur linux-3.3-rc4/arch/powerpc/include/asm/types.h linux-3.3-rc4.patch/arch/powerpc/include/asm/types.h
+--- linux-3.3-rc4/arch/powerpc/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/powerpc/include/asm/types.h	2012-02-20 10:22:38.841786865 +0100
+@@ -30,6 +30,12 @@
+  * 2 of the License, or (at your option) any later version.
+  */
+ 
++#ifdef __powerpc64__
++typedef unsigned int umode_t;
++#else
++typedef unsigned short umode_t;
++#endif
++
+ typedef struct {
+ 	__u32 u[4];
+ } __attribute__((aligned(16))) __vector128;
+diff -Naur linux-3.3-rc4/arch/s390/include/asm/types.h linux-3.3-rc4.patch/arch/s390/include/asm/types.h
+--- linux-3.3-rc4/arch/s390/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/s390/include/asm/types.h	2012-02-20 10:22:38.842786883 +0100
+@@ -13,6 +13,8 @@
+ 
+ #ifndef __ASSEMBLY__
+ 
++typedef unsigned short umode_t;
++
+ /* A address type so that arithmetic can be done on it & it can be upgraded to
+    64 bit when necessary 
+ */
+diff -Naur linux-3.3-rc4/arch/sparc/include/asm/posix_types.h linux-3.3-rc4.patch/arch/sparc/include/asm/posix_types.h
+--- linux-3.3-rc4/arch/sparc/include/asm/posix_types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/sparc/include/asm/posix_types.h	2012-02-20 10:22:38.842786883 +0100
+@@ -20,6 +20,7 @@
+ typedef unsigned int           __kernel_gid_t;
+ typedef unsigned long          __kernel_ino_t;
+ typedef unsigned int           __kernel_mode_t;
++typedef unsigned short         __kernel_umode_t;
+ typedef unsigned int           __kernel_nlink_t;
+ typedef int                    __kernel_daddr_t;
+ typedef long                   __kernel_off_t;
+@@ -54,6 +55,7 @@
+ typedef unsigned short         __kernel_gid_t;
+ typedef unsigned long          __kernel_ino_t;
+ typedef unsigned short         __kernel_mode_t;
++typedef unsigned short         __kernel_umode_t;
+ typedef short                  __kernel_nlink_t;
+ typedef long                   __kernel_daddr_t;
+ typedef long                   __kernel_off_t;
+diff -Naur linux-3.3-rc4/arch/sparc/include/asm/types.h linux-3.3-rc4.patch/arch/sparc/include/asm/types.h
+--- linux-3.3-rc4/arch/sparc/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/sparc/include/asm/types.h	2012-02-20 10:22:38.843786901 +0100
+@@ -12,6 +12,12 @@
+ 
+ #include <asm-generic/int-ll64.h>
+ 
++#ifndef __ASSEMBLY__
++
++typedef unsigned short umode_t;
++
++#endif /* __ASSEMBLY__ */
++
+ #endif /* defined(__sparc__) */
+ 
+ #endif /* defined(_SPARC_TYPES_H) */
+diff -Naur linux-3.3-rc4/arch/xtensa/include/asm/types.h linux-3.3-rc4.patch/arch/xtensa/include/asm/types.h
+--- linux-3.3-rc4/arch/xtensa/include/asm/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/arch/xtensa/include/asm/types.h	2012-02-20 10:22:38.843786901 +0100
+@@ -23,6 +23,8 @@
+ 
+ #ifndef __ASSEMBLY__
+ 
++typedef unsigned short umode_t;
++
+ /*
+  * These aren't exported outside the kernel to avoid name space clashes
+  */
+diff -Naur linux-3.3-rc4/include/asm-generic/types.h linux-3.3-rc4.patch/include/asm-generic/types.h
+--- linux-3.3-rc4/include/asm-generic/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/include/asm-generic/types.h	2012-02-20 10:22:38.844786919 +0100
+@@ -6,4 +6,10 @@
+  */
+ #include <asm-generic/int-ll64.h>
+ 
++#ifndef __ASSEMBLY__
++
++typedef unsigned short umode_t;
++
++#endif /* __ASSEMBLY__ */
++
+ #endif /* _ASM_GENERIC_TYPES_H */
+diff -Naur linux-3.3-rc4/include/linux/types.h linux-3.3-rc4.patch/include/linux/types.h
+--- linux-3.3-rc4/include/linux/types.h	2012-02-19 00:53:33.000000000 +0100
++++ linux-3.3-rc4.patch/include/linux/types.h	2012-02-20 10:22:38.844786919 +0100
+@@ -24,7 +24,6 @@
+ typedef __kernel_dev_t		dev_t;
+ typedef __kernel_ino_t		ino_t;
+ typedef __kernel_mode_t		mode_t;
+-typedef unsigned short		umode_t;
+ typedef __kernel_nlink_t	nlink_t;
+ typedef __kernel_off_t		off_t;
+ typedef __kernel_pid_t		pid_t;
