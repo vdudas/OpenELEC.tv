@@ -159,10 +159,10 @@
 # additional drivers to install:
 # Space separated list is supported,
 # e.g. ADDITIONAL_DRIVERS="asix-ax887xx AF9035"
-# currently broken drivers: hdhomerun-driver
+# currently broken drivers: hdhomerun-driver RTL2832
   ADDITIONAL_DRIVERS="bcm_sta"
   if [ "$PVR" = yes ]; then
-    ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS aver_h826d RTL2832 vtuner-driver"
+    ADDITIONAL_DRIVERS="$ADDITIONAL_DRIVERS aver_h826d vtuner-driver"
   fi
 
 # build with network support (yes / no)
