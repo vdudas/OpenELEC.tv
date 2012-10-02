@@ -24,3 +24,9 @@
 
 cd $PKG_BUILD
 RPM_OS=true BINDIR=usr/bin LIBDIR=usr/lib DESTDIR=$INSTALL make install
+
+  mkdir -p $SYSROOT_PREFIX/usr/include
+    cp iguanaIR.h $SYSROOT_PREFIX/usr/include
+  mkdir -p $SYSROOT_PREFIX/usr/lib
+    cp libiguanaIR.so.0 $SYSROOT_PREFIX/usr/lib
+    ln -s $SYSROOT_PREFIX/usr/lib/libiguanaIR.so.0 $SYSROOT_PREFIX/usr/lib/libiguanaIR.so
